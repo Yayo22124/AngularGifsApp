@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+
+import { Gif } from '../../../shared/interfaces/gifs.interface';
+import { GifsService } from '../../services/GifsService/gifs-service.service';
 
 @Component({
   selector: 'gifs-home-page',
@@ -6,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
-
+  // ! Injects
+  private gifsService: GifsService = inject(GifsService);
+  // * Properties
+  public get gifsList(): Gif[]  {
+    return this.gifsService.gifsList;
+  };
 }

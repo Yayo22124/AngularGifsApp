@@ -1,14 +1,12 @@
-<div class="bg-dark border-right d-flex flex-column flex-shrink-0 p-3 text-light" id="sidebar">
+<div class="bg-dark border-right d-flex flex-column  p-3 text-light" id="sidebar">
   <h3 class="text-light">GifsApp</h3>
   <hr>
+  <h5>Búsquedas Recientes</h5>
+  <div class="list-group list-reset">
+    <span class="bg-primary-subtle list-group-item" *ngFor="let tag of tags">
+      {{ tag | titlecase }}
+    </span>
 
-  <div class="list-group list-reset mb-auto">
-    <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill">Primary</span>
   </div>
-  <hr>
-  <div class="d-flex justify-content-center">
-    <a href="https://github.com/Yayo22124" class="d-flex align-items-center text-white text-decoration-none">
-      <img src="assets/icons/github.svg" alt="GitHub" width="32" height="32" class="rounded-circle me-2 text-light">
-    </a>
-  </div>
+
 </div>

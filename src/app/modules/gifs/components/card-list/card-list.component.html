@@ -1,0 +1,9 @@
+<div class="row d-flex gap-5">
+  <div class="card col-md-3 col-sm-6 border-primary bg-dark mb-3 text-light" *ngFor="let gif of gifs">
+    <div class="card-header">{{ gif.title }}</div>
+    <div class="card-body text-light">
+
+      <video class="object-fit-contain" src="{{ gif.images.downsized_small.mp4 }}"></video>
+    </div>
+  </div>
+</div>
