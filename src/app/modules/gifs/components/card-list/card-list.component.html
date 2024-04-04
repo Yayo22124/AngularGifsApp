@@ -1,9 +1,16 @@
-<div class="row d-flex gap-5">
-  <div class="card col-md-3 col-sm-6 border-primary bg-dark mb-3 text-light" *ngFor="let gif of gifs">
-    <div class="card-header">{{ gif.title }}</div>
-    <div class="card-body text-light">
+<div class="row">
+  <div class="col-md-3 col-sm-6" *ngFor="let gif of gifs">
 
-      <video class="object-fit-contain" src="{{ gif.images.downsized_small.mp4 }}"></video>
+    <div class="card mb-2 text-center bg-dark">
+
+      <img class="card-img-top" [src]="gif.images.downsized_medium.url" [alt]="gif.title">
+
+      <div class="card-body text-light">
+        <p class="card-text">
+          {{gif.title}}
+        </p>
+
+      </div>
     </div>
   </div>
 </div>

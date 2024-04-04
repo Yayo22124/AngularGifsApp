@@ -3,9 +3,9 @@
   <hr>
   <h5>Búsquedas Recientes</h5>
   <div class="list-group list-reset">
-    <span class="bg-primary-subtle list-group-item" *ngFor="let tag of tags">
+    <button class="list-group-item list-group-item-action" *ngFor="let tag of tags" (click)="onResearchTag(tag)">
       {{ tag | titlecase }}
-    </span>
+    </button>
 
   </div>
 

@@ -6,12 +6,15 @@ import {
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
-import { Observable } from 'rxjs';
-
 @Injectable({
   providedIn: 'root',
 })
 export class GifsService {
+  constructor() {
+    this.loadLocalStorage();
+    console.log("Gifs Service Ready");
+
+  }
   // * Injects
   private http = inject(HttpClient);
 
@@ -33,9 +36,10 @@ export class GifsService {
 
     this._tagsHistory.unshift(tag);
     this._tagsHistory = this._tagsHistory.splice(0, 10);
+    this.saveLocalStorage();
   }
 
-  public searchTag(tag: string): void{
+  public searchTag(tag: string): void {
     if (tag.length === 0) return;
 
     this.organizeHistory(tag);
@@ -50,11 +54,24 @@ export class GifsService {
     this.http
       .get<ISearchResponse>(`${APIURL}/search`, {
         params,
-      }).subscribe((res: ISearchResponse) => {
+      })
+      .subscribe((res: ISearchResponse) => {
         console.log(res);
         this.gifsList = res.data;
         console.log(this.gifsList);
-
       });
+  }
+
+  private saveLocalStorage(): void {
+    localStorage.setItem('history', JSON.stringify(this._tagsHistory));
+  }
+
+  private loadLocalStorage(): void {
+    if (!(localStorage.getItem('history'))) return;
+
+    this._tagsHistory = JSON.parse(localStorage.getItem('history')!);
+
+    if (this._tagsHistory.length === 0) return;
+    this.searchTag(this._tagsHistory[0]);
   }
 }
